@@ -22,6 +22,7 @@ async function bootstrap() {
     const expressApp = app.getHttpAdapter().getInstance();
     cachedServer = serverlessExpress({ app: expressApp });
   }
+
   return cachedServer;
 }
 

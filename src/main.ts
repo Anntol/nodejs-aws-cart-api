@@ -17,7 +17,7 @@ async function bootstrap() {
     });
     app.use(helmet());
 
-    await app.init();
+    await app.listen(port);
 
     const expressApp = app.getHttpAdapter().getInstance();
     cachedServer = serverlessExpress({ app: expressApp });
@@ -26,6 +26,10 @@ async function bootstrap() {
   return cachedServer;
 }
 
+bootstrap().then(() => {
+  console.log('App is running on %s port', port);
+});
+
 export const handler: Handler = async (
     event: any,
     context: Context,
@@ -33,6 +37,7 @@ export const handler: Handler = async (
 ) => {
   console.log(`Event: ${JSON.stringify(event, null, 2)}`);
   console.log(`Context: ${JSON.stringify(context, null, 2)}`);
+
   cachedServer = cachedServer ?? (await bootstrap());
   return cachedServer(event, context, callback);
 };

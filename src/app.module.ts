@@ -9,7 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
+    /*TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DBHOST,
       port: +process.env.DBPORT,
@@ -19,7 +19,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       entities: [],
       synchronize: true,
       logging: true,
-    }),
+    }),*/
     AuthModule,
     CartModule,
     OrderModule,

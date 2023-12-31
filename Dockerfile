@@ -66,5 +66,5 @@ COPY --from=build /usr/src/app/dist ./dist
 # Expose the port that the application listens on.
 EXPOSE 4000
 
-# Run the application.
-CMD npm start:prod
+# Start the server using the production build
+CMD ["npm", "run", "start:prod"]
